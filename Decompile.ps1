@@ -129,6 +129,9 @@ foreach($dllFile in $dllFiles) {
         git add . | Out-Null
         git commit -m "Approved Decompilation" | Out-Null
         Write-Host "`t`tDecompiled the approved version of the mod and commited. "
+
+        # Delete everything except the .git folder
+        Get-ChildItem $projectFolderPath -Exclude '.git' | Remove-Item -Recurse -Force
     }
 
     $toCheckDllPath = Join-Path $modsToCheckPath $dllFile.Name
